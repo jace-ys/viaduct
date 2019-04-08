@@ -3,6 +3,7 @@ services:
     name: "Testing"
     prefix: "test"
     upstream_url: "http://testing.com"
+    methods: ["GET", "POST"]
     allow_cross_origin: true
 
   typicode:

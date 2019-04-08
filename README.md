@@ -4,4 +4,4 @@
 
 <img src="https://www.getyourguide.com/magazine/wp-content/uploads/2018/07/Glenfinnan-Viaduct-GetYourGuide.jpg" height="200" align="right"/>
 
-Viaduct is a lightweight API gateway written in Go, heavily inspired by [jakewright/drawbridge](https://github.com/jakewright/drawbridge).
+Viaduct is a lightweight and configurable API gateway written in Go, largely a fork of [jakewright/drawbridge](https://github.com/jakewright/drawbridge).
