@@ -1,0 +1,12 @@
+version: '3.5'
+
+services:
+  viaduct:
+    build:
+      context: ../
+      dockerfile: build/Dockerfile
+    image: jaceys/viaduct
+    volumes:
+      - ../config/config.sample.yml:/config/config.yml
+    ports:
+      - 5000:80
