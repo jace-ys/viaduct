@@ -8,3 +8,6 @@ env:
 
 script:
   - make test container
+
+notifications:
+  email: false

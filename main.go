@@ -4,6 +4,6 @@ package main
 // 	"github.com/jace-ys/viaduct/cmd"
 // )
 //
-// func main() {
-// 	cmd.Execute()
-// }
+func main() {
+	// cmd.Execute()
+}
