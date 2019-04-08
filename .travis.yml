@@ -3,5 +3,8 @@ language: go
 go:
   - 1.12
 
-scripts:
-  - make test build
+env:
+  - GO111MODULE=on
+
+script:
+  - make test container
