@@ -1,0 +1,16 @@
+services:
+  test:
+    name: "Testing"
+    prefix: "test"
+    upstream_url: "http://testing.com"
+    allow_cross_origin: true
+
+  typicode:
+    name: "JSONPlaceholder"
+    prefix: "typicode"
+    upstream_url: "https://jsonplaceholder.typicode.com/"
+
+  reqres:
+    name: "Reqres"
+    prefix: "reqres"
+    upstream_url: "https://reqres.in/api"
