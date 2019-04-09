@@ -23,12 +23,12 @@ func TestLoadConfig(t *testing.T) {
 }
 
 func TestDefineServices(t *testing.T) {
-	serviceRegister, err := RegisterServices("../../config/config.sample.yml")
+	serviceRegistry, err := RegisterServices("../../config/config.sample.yml")
 	if err != nil {
 		t.Error(err)
 	}
 
-	testService := serviceRegister.Services["test"]
+	testService := serviceRegistry.Services["test"]
 
 	assert.Equal(t, "Testing", testService.Name)
 	assert.Equal(t, "test", testService.Prefix)

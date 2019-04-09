@@ -15,7 +15,7 @@ type Config struct {
 	LogPrefix  string `env:"LOG_PREFIX" envDefault:"viaduct"`
 }
 
-type ServiceRegister struct {
+type ServiceRegistry struct {
 	Services map[string]domain.Service
 }
 
@@ -30,19 +30,19 @@ func LoadConfig() (c Config, e error) {
 	return c, nil
 }
 
-func RegisterServices(configPath string) (s ServiceRegister, e error) {
+func RegisterServices(configPath string) (s ServiceRegistry, e error) {
 	// Read the configuration file
 	out, err := ioutil.ReadFile(configPath)
 	if err != nil {
 		return s, err
 	}
 
-	// Unmarshal the YAML into the ServiceRegister struct
+	// Unmarshal the YAML into the ServiceRegistry struct
 	err = yaml.Unmarshal(out, &s)
 	if err != nil {
 		return s, err
 	}
 
-	// Return the ServiceRegister struct
+	// Return the ServiceRegistry struct
 	return s, nil
 }

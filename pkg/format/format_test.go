@@ -8,13 +8,13 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestMergePath(t *testing.T) {
+func TestSingleJoiningSlash(t *testing.T) {
 	u1, err := url.Parse("https://jsonplaceholder.typicode.com/")
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	p1 := MergePath(u1.Path, "/posts")
+	p1 := SingleJoiningSlash(u1.Path, "/posts")
 
 	assert.Equal(t, "/posts", p1)
 
@@ -23,7 +23,7 @@ func TestMergePath(t *testing.T) {
 		log.Fatal(err)
 	}
 
-	p2 := MergePath(u2.Path, "/users/2")
+	p2 := SingleJoiningSlash(u2.Path, "/users/2")
 
 	assert.Equal(t, "/api/users/2", p2)
 }
