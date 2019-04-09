@@ -11,6 +11,7 @@ type Service struct {
 	UpstreamUrl      *ServiceURL `yaml:"upstream_url"`
 	Methods          []string
 	AllowCrossOrigin bool `yaml:"allow_cross_origin"`
+	Middlewares      map[string]bool
 }
 
 type ServiceURL struct {

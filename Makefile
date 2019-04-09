@@ -1,7 +1,7 @@
 TARGET = main
 SOURCE = main.go
 IMAGE = jaceys/viaduct
-FILEPATH = config/config.sample.yml
+CONFIGPATH = config/config.sample.yml
 DOCKERFILE = build/Dockerfile
 COMPOSEFILE = build/docker-compose.yml
 
@@ -20,7 +20,7 @@ build:
 
 execute:
 	@echo "==> Running executable.."
-	FILE_PATH=${FILEPATH} ./${TARGET}
+	CONFIG_PATH=${CONFIGPATH} ./${TARGET}
 
 # Target to build and run Docker image
 docker: container run
@@ -31,7 +31,7 @@ container:
 
 run:
 	@echo "==> Running container.."
-	docker run --rm -p 8000:80 -v $(shell pwd)/${FILEPATH}:/config/config.yml ${IMAGE}
+	docker run --rm -p 8000:80 -v $(shell pwd)/${CONFIGPATH}:/config/config.yml ${IMAGE}
 
 # Target to build and run using Docker Compose
 compose:

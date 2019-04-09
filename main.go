@@ -1,14 +1,14 @@
 package main
 
 // import (
-//   "log"
+// 	"log"
 //
 // 	"github.com/jace-ys/viaduct/cmd"
 // )
 
 func main() {
 	// err := cmd.Execute()
-  // if err != nil {
-  //   log.Fatal(err)
-  // }
+	// if err != nil {
+	// 	log.Fatal(err)
+	// }
 }

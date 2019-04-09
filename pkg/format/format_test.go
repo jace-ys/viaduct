@@ -1,10 +1,11 @@
-package fmt
+package format
 
 import (
-	"github.com/stretchr/testify/assert"
 	"log"
 	"net/url"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func TestMergePath(t *testing.T) {

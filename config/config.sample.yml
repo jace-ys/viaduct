@@ -5,6 +5,8 @@ services:
     upstream_url: "http://testing.com"
     methods: ["GET", "POST"]
     allow_cross_origin: true
+    middlewares:
+      logging: true
 
   typicode:
     name: "JSONPlaceholder"
