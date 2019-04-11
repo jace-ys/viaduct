@@ -1,4 +1,4 @@
-TARGET = main
+TARGET = viaduct
 SOURCE = main.go
 IMAGE = jaceys/viaduct
 CONFIGPATH = config/config.sample.yml
@@ -20,7 +20,7 @@ build:
 
 execute:
 	@echo "==> Running executable.."
-	CONFIG_PATH=${CONFIGPATH} ./${TARGET}
+	./viaduct start -p 3000 --config config/config.sample.yml
 
 # Target to build and run Docker image
 docker: container run

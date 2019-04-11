@@ -13,6 +13,7 @@ import (
 	"github.com/urfave/negroni"
 
 	"github.com/jace-ys/viaduct/pkg/config"
+	"github.com/jace-ys/viaduct/pkg/utils/log"
 )
 
 func TestLogger(t *testing.T) {
@@ -23,11 +24,12 @@ func TestLogger(t *testing.T) {
 		t.Error(err)
 	}
 
-	l := NewLogger(Options{
+	log.WithLevels(log.Options{
 		Prefix: "TestLogger",
 		Out:    io.MultiWriter(&buff, os.Stdout),
 	})
-	logging := CreateMiddleware(l, &serviceRegistry)
+
+	logging := CreateMiddleware(log.Request(), &serviceRegistry)
 
 	n := negroni.New()
 	n.UseFunc(logging)

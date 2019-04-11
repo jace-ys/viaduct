@@ -10,7 +10,6 @@ import (
 func TestLoadConfig(t *testing.T) {
 	os.Setenv("PORT", "3000")
 	os.Setenv("CONFIG_PATH", "config/config.sample.yml")
-	os.Setenv("LOG_PREFIX", "TestConfig")
 
 	conf, err := LoadConfig()
 	if err != nil {
@@ -19,7 +18,6 @@ func TestLoadConfig(t *testing.T) {
 
 	assert.Equal(t, "3000", conf.Port)
 	assert.Equal(t, "config/config.sample.yml", conf.ConfigPath)
-	assert.Equal(t, "TestConfig", conf.LogPrefix)
 }
 
 func TestDefineServices(t *testing.T) {

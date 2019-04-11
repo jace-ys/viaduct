@@ -5,11 +5,11 @@ COPY go.mod .
 COPY go.sum .
 RUN go mod download
 COPY . .
-RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -a -installsuffix cgo -o main
+RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -a -installsuffix cgo -o viaduct
 
 # Part 2 (Final)
 FROM alpine:3.7
 WORKDIR /usr/src/app
-COPY --from=builder /app/main .
+COPY --from=builder /app/viaduct .
 EXPOSE 80
-CMD ["./main"]
+CMD ["./viaduct", "start"]

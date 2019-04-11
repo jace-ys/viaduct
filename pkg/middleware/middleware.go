@@ -3,7 +3,6 @@ package middleware
 import (
 	"fmt"
 	"net/http"
-	"strings"
 )
 
 // This replicates the negroni.HandlerFunc type but abstracts the code from the library
@@ -19,7 +18,7 @@ func Configure(definition map[string]bool, registry Registry) (stack []Middlewar
 		if value {
 			// Return an error if middleware does not exist in registry
 			if registry[key] == nil {
-				err := fmt.Errorf("Unknown middleware declared in config: %s", strings.Title(key))
+				err := fmt.Errorf("Unknown middleware declared in config: %s", key)
 				return stack, err
 			}
 			stack = append(stack, registry[key])
@@ -27,18 +26,4 @@ func Configure(definition map[string]bool, registry Registry) (stack []Middlewar
 	}
 	// Return the middleware stack
 	return stack, nil
-}
-
-func Format(m map[string]bool) string {
-	var s string
-
-	if len(m) == 0 {
-		return "None"
-	}
-
-	for key, val := range m {
-		s = s + fmt.Sprintf("\n		%s: %t", strings.Title(key), val)
-	}
-
-	return s
 }

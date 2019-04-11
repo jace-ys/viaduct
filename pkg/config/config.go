@@ -12,7 +12,6 @@ import (
 type Config struct {
 	Port       string `env:"PORT" envDefault:"80"`
 	ConfigPath string `env:"CONFIG_PATH" envDefault:"/config/config.yml"`
-	LogPrefix  string `env:"LOG_PREFIX" envDefault:"viaduct"`
 }
 
 type ServiceRegistry struct {
