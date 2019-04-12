@@ -7,7 +7,7 @@ COMPOSEFILE = build/docker-compose.yml
 
 .PHONY: all test build execute docker container run format clean
 
-all: build execute
+all: format build execute
 
 test:
 	@echo "==> Running tests.."

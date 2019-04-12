@@ -6,12 +6,12 @@ import (
 )
 
 var Services = `
-		Service: %s
-		Prefix: %s
-		Upstream Url: %s
-		Methods: %v
-		Allow Cross Origin: %t
-		Middlewares: %s
+			Service: %s
+			Prefix: %s
+			Upstream Url: %s
+			Methods: %v
+			Allow Cross Origin: %t
+			Middlewares: %s
 `
 
 func Methods(m []string) string {

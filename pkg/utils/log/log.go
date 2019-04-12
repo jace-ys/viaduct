@@ -5,36 +5,40 @@ import (
 	"io"
 	"log"
 	"os"
+
+	"github.com/logrusorgru/aurora"
 )
 
 var logger *LogWithLevels
 
 type LogWithLevels struct {
-	Info    *log.Logger
+	Debug   *log.Logger
 	Warn    *log.Logger
 	Error   *log.Logger
 	Request *log.Logger
 }
 
-func WithLevels(opts ...Options) {
+func WithLevels(o ...Options) {
+	// Return default Logger if no options declared
+	var opts Options
+	if len(o) == 0 {
+		opts = Options{}
+	} else {
+		opts = o[0]
+	}
+
+	au := aurora.NewAurora(!opts.DisableColors)
+
 	logger = &LogWithLevels{
-		Info:    NewLogger("INFO", opts...),
-		Warn:    NewLogger("WARNING", opts...),
-		Error:   NewLogger("ERROR", opts...),
-		Request: NewLogger("REQUEST", opts...),
+		Debug:   NewLogger(au.Green("DEBUG"), opts),
+		Warn:    NewLogger(au.Brown("WARNING"), opts),
+		Error:   NewLogger(au.Red("ERROR"), opts),
+		Request: NewLogger(au.Cyan("REQUEST"), opts),
 	}
 }
 
 // Returns a new Logger instance, with coloured level added to prefix
-func NewLogger(level string, opts ...Options) *log.Logger {
-	// Return default Logger if no options declared
-	var o Options
-	if len(opts) == 0 {
-		o = Options{}
-	} else {
-		o = opts[0]
-	}
-
+func NewLogger(level aurora.Value, o Options) *log.Logger {
 	// Determine prefix
 	prefix := o.Prefix
 	if len(prefix) > 0 {
@@ -58,12 +62,12 @@ func NewLogger(level string, opts ...Options) *log.Logger {
 		flags = o.Flags
 	}
 
-	prefix = fmt.Sprintf("%s%s: ", prefix, level)
+	prefix = fmt.Sprintf("%s%s : ", prefix, level)
 	return log.New(output, prefix, flags)
 }
 
-func Info() *log.Logger {
-	return logger.Info
+func Debug() *log.Logger {
+	return logger.Debug
 }
 
 func Warn() *log.Logger {

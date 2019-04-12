@@ -7,6 +7,8 @@ import (
 type Options struct {
 	// Keyword wrapped with square brackets prefixed to log messages. Default: Viaduct
 	Prefix string
+	// Disable colored logging. Default: false
+	DisableColors bool
 	// Output destination to write logs to. Default: os.Stdout
 	Out io.Writer
 	// Flags define the logging properties. See http://golang.org/pkg/log/#pkg-constants.
