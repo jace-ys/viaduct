@@ -6,7 +6,6 @@ import (
 	"net/http"
 	"net/http/httptest"
 	"os"
-	"strings"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -39,17 +38,17 @@ func TestLogger(t *testing.T) {
 	}))
 
 	res := httptest.NewRecorder()
-	req, err := http.NewRequest("GET", "http://testing.com/invalid/url", nil)
+	req, err := http.NewRequest("GET", "http://localhost:3000/typicode/posts", nil)
 	if err != nil {
 		t.Error(err)
 	}
 
 	n.ServeHTTP(res, req)
 
-	serviceName := strings.Split(buff.String(), " | ")[1]
+	serviceContext := getServiceContext(req, &serviceRegistry)
 
 	assert.Equal(t, res.Code, http.StatusOK)
 	assert.Equal(t, res.Body.String(), "Test Ok")
-	assert.Equal(t, true, strings.Contains(serviceName, "Testing"))
 	assert.Equal(t, true, buff.Len() > 0)
+	assert.Equal(t, "Unknown Endpoint", serviceContext.Name)
 }

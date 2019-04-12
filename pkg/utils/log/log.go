@@ -18,6 +18,12 @@ type LogWithLevels struct {
 	Request *log.Logger
 }
 
+type Logger struct {
+	*log.Logger
+	Options Options
+	Aurora  aurora.Value
+}
+
 func WithLevels(o ...Options) {
 	// Return default Logger if no options declared
 	var opts Options
@@ -30,9 +36,9 @@ func WithLevels(o ...Options) {
 	au := aurora.NewAurora(!opts.DisableColors)
 
 	logger = &LogWithLevels{
-		Debug:   NewLogger(au.Green("DEBUG"), opts),
+		Debug:   NewLogger(au.Green(" DEBUG "), opts),
 		Warn:    NewLogger(au.Brown("WARNING"), opts),
-		Error:   NewLogger(au.Red("ERROR"), opts),
+		Error:   NewLogger(au.Red(" ERROR "), opts),
 		Request: NewLogger(au.Cyan("REQUEST"), opts),
 	}
 }

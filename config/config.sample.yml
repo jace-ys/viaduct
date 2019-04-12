@@ -2,7 +2,7 @@ services:
   test:
     name: "Testing"
     prefix: "test"
-    upstream_url: "http://testing.com"
+    upstream_url: "http://localhost:8080/invalid/url"
     methods: ["GET", "POST"]
     allow_cross_origin: true
     middlewares:
@@ -11,9 +11,9 @@ services:
   typicode:
     name: "JSONPlaceholder"
     prefix: "typicode"
-    upstream_url: "https://jsonplaceholder.typicode.com/"
+    upstream_url: "https://jsonplaceholder.typicode.com"
 
   reqres:
     name: "Reqres"
-    prefix: "reqres"
-    upstream_url: "https://reqres.in/api"
+    prefix: "reqres/user"
+    upstream_url: "https://reqres.in/api/users/"

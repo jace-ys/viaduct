@@ -12,12 +12,12 @@ import (
 )
 
 // Set default format for logging requests
-var defaultFormat = "| {{.Service}} | {{.Status}} | {{.Duration}} | {{.Hostname}} | {{.Method}} {{.RequestURI}}"
+var defaultFormat = "| {{.Service}} | {{.Hostname}} | {{.Method}} {{.RequestURI}} | {{.Status}} {{.Duration}}"
 
 // logEntry struct to be passed to template
 type requestEntry struct {
 	Service    string
-	Status     int
+	Status     string
 	Duration   time.Duration
 	Hostname   string
 	Method     string
@@ -34,13 +34,15 @@ func CreateMiddleware(logger *log.Logger, registry *config.ServiceRegistry) midd
 		}
 		next(rw, r)
 
+		serviceContext := getServiceContext(r, registry)
+
 		entry := requestEntry{
-			Service:    getServiceName(registry, r.Host),
-			Status:     rw.status, // Fix status logging
+			Service:    serviceContext.Name,
+			Status:     proxyStatus(rw.status),
 			Duration:   time.Since(start),
-			Hostname:   r.Host,
-			Method:     r.Method,
-			RequestURI: r.URL.RequestURI(),
+			Hostname:   serviceContext.Host,
+			Method:     serviceContext.Method,
+			RequestURI: serviceContext.RequestURI,
 		}
 
 		buffer := &bytes.Buffer{}
@@ -52,32 +54,4 @@ func CreateMiddleware(logger *log.Logger, registry *config.ServiceRegistry) midd
 
 		logger.Println(buffer.String())
 	}
-}
-
-func getServiceName(registry *config.ServiceRegistry, requestedHost string) string {
-	for _, service := range registry.Services {
-		if service.UpstreamUrl.Host == requestedHost {
-			return service.Name
-		}
-	}
-	return requestedHost
-}
-
-// Implement wrapper around http.ResponseWriter that provides extra information about the response
-type responseWriter struct {
-	http.ResponseWriter
-	status int
-	size   int
-}
-
-func (w *responseWriter) WriteHeader(s int) {
-	w.status = s
-	w.ResponseWriter.WriteHeader(s)
-}
-
-func (w *responseWriter) Write(b []byte) (int, error) {
-	w.WriteHeader(http.StatusOK)
-	size, err := w.ResponseWriter.Write(b)
-	w.size += size
-	return size, err
 }

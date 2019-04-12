@@ -30,7 +30,7 @@ func TestDefineServices(t *testing.T) {
 
 	assert.Equal(t, "Testing", testService.Name)
 	assert.Equal(t, "test", testService.Prefix)
-	assert.Equal(t, "http://testing.com", testService.UpstreamUrl.String())
+	assert.Equal(t, "http://localhost:8080/invalid/url", testService.UpstreamUrl.String())
 	assert.Equal(t, "GET", testService.Methods[0])
 	assert.Equal(t, true, testService.AllowCrossOrigin)
 	assert.Equal(t, true, testService.Middlewares["logging"])
