@@ -1,6 +1,7 @@
 TARGET = viaduct
 SOURCE = main.go
 IMAGE = jaceys/viaduct
+VERSION = latest
 CONFIGPATH = config/config.sample.yml
 DOCKERFILE = build/Dockerfile
 COMPOSEFILE = build/docker-compose.yml
@@ -27,16 +28,20 @@ docker: container run
 
 container:
 	@echo "==> Building image.."
-	docker build -f ${DOCKERFILE} -t ${IMAGE} .
+	docker build -f ${DOCKERFILE} -t ${IMAGE}:${VERSION} .
 
 run:
 	@echo "==> Running container.."
-	docker run --rm -p 8000:80 -v $(shell pwd)/${CONFIGPATH}:/config/config.yml ${IMAGE}
+	docker run --rm -p 8000:80 -v $(shell pwd)/${CONFIGPATH}:/config/config.yml ${IMAGE}:${VERSION}
 
 # Target to build and run using Docker Compose
 compose:
 	@echo "==> Starting Docker Compose.."
 	docker-compose -f ${COMPOSEFILE} up
+
+deploy:
+	@echo "==> Publishing image to Docker Hub"
+	docker push ${IMAGE}:${VERSION}
 
 format:
 	@echo "==> Formatting code.."

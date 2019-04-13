@@ -11,3 +11,12 @@ script:
 
 notifications:
   email: false
+
+before_deploy:
+  - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+
+deploy:
+  provider: script
+  script: make deploy
+  on:
+    branch: master

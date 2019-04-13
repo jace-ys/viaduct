@@ -1,4 +1,5 @@
-[![Build Status][ci-img]][ci-status]
+[![Build Status][ci-build]][ci-status]
+[![Docker Pulls][docker-pulls]][docker-image]
 
 # Viaduct
 
@@ -6,5 +7,7 @@
 
 Viaduct is a lightweight and configurable API gateway written in Go, largely a fork of [jakewright/drawbridge](https://github.com/jakewright/drawbridge).
 
-[ci-img]:	https://img.shields.io/travis/jace-ys/viaduct/master.svg?style=for-the-badge&logo=travis
+[ci-build]:	https://img.shields.io/travis/jace-ys/viaduct/master.svg?style=for-the-badge&logo=travis
 [ci-status]: https://travis-ci.com/jace-ys/viaduct
+[docker-pulls]: https://img.shields.io/docker/pulls/jaceys/viaduct.svg?style=for-the-badge&logo=docker
+[docker-image]: https://hub.docker.com/r/jaceys/viaduct
