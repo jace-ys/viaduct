@@ -79,4 +79,5 @@ func TestServiceContext(t *testing.T) {
 
 	assert.Equal(t, true, strings.Contains(buff.String(), serviceContext.Name))
 	assert.Equal(t, true, strings.Contains(buff.String(), serviceContext.Host))
+	assert.Equal(t, "GET", serviceContext.Method)
 }
