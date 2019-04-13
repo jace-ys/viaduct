@@ -12,9 +12,9 @@ type Middleware func(w http.ResponseWriter, r *http.Request, next http.HandlerFu
 type Registry map[string]Middleware
 
 // Spits out a stack of middlewares using the provided registry, based on the middleware config for each service
-func Configure(definition map[string]bool, registry Registry) (stack []Middleware, e error) {
+func Configure(middlewares map[string]bool, registry Registry) (stack []Middleware, e error) {
 	// Add middlewares declared in config to stack
-	for key, value := range definition {
+	for key, value := range middlewares {
 		if value {
 			// Return an error if middleware does not exist in registry
 			if registry[key] == nil {

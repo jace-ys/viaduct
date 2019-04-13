@@ -2,10 +2,8 @@ package logging
 
 import (
 	"bytes"
-	"io"
 	"net/http"
 	"net/http/httptest"
-	"os"
 	"strings"
 	"testing"
 
@@ -16,7 +14,7 @@ import (
 	"github.com/jace-ys/viaduct/pkg/utils/log"
 )
 
-func TestLogger(t *testing.T) {
+func TestLoggingMiddleware(t *testing.T) {
 	var buff bytes.Buffer
 
 	serviceRegistry, err := config.RegisterServices("../../../config/config.sample.yml")
@@ -58,7 +56,7 @@ func TestServiceContext(t *testing.T) {
 
 	log.WithLevels(log.Options{
 		Prefix: "TestLogger",
-		Out:    io.MultiWriter(&buff, os.Stdout),
+		Out:    &buff,
 	})
 
 	logging := CreateMiddleware(log.Request(), &serviceRegistry)
