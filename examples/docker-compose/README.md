@@ -1,6 +1,6 @@
 # Docker Compose Example
 
-A simple demo on using Viaduct with Docker Compose. Viaduct acts as an API gateway that reverse proxies requests to a microservices backend.
+A simple demo on using Viaduct with Docker Compose. Viaduct acts as an API gateway that proxies requests to a microservices backend.
 
 ## Installation
 
@@ -15,22 +15,23 @@ Refer to the main [README](https://github.com/jace-ys/viaduct#docker-compose-exa
 
 * http://localhost:5000/api/users/1
 
-   Resolves to http://service.backend-1:3000/users/1. JSON response:
+   Proxied to http://service.backend-1:3000/users/1. JSON response:
 
-```
-{
-  "id": 1,
-  "name": "John Doe"
-}
-```
+   ```
+   {
+     "id": 1,
+     "name": "John Doe"
+   }
+   ```
 
 * http://localhost:5000/api/todos/1
 
-   Resolves to http://service.backend-2:3000/todos/1. JSON response:
-```
-{
-  "id": 1,
-  "title": "Defeat Reverse Flash",
-  "author": "Barry Allen"
-}
-```
+   Proxied to http://service.backend-2:3000/todos/1. JSON response:
+
+   ```
+   {
+     "id": 1,
+     "title": "Defeat Reverse Flash",
+     "author": "Barry Allen"
+   }
+   ```

@@ -36,7 +36,7 @@ Viaduct requires no data store and is instead configured using a .yml file conta
 
       Default: false
 
-   * `middlewares` - list of middlewares to be applied for each API
+   * `middlewares` - list of middlewares to be applied for the API
 
       Default: [] (none)
 
@@ -46,6 +46,7 @@ services:
     name: "JSONPlaceholder"
     prefix: "typicode"
     upstream_url: "https://jsonplaceholder.typicode.com"
+    methods: ["GET", "POST"]
     allow_cross_origin: false
     middlewares:
       logging: true
@@ -53,7 +54,7 @@ services:
 
 If the Viaduct server was running at localhost:5000, http://localhost:5000/typicode/posts would resolve and proxy to https://jsonplaceholder.typicode.com/posts.
 
-For more, see [sample config file](https://github.com/jace-ys/viaduct/config/config.sample.yml) or [examples](https://github.com/jace-ys/viaduct/examples).
+For more, see [sample config file](https://github.com/jace-ys/viaduct/blob/master/config/config.sample.yml) or [examples](https://github.com/jace-ys/viaduct/tree/master/examples).
 
 ## Usage
 
@@ -84,7 +85,7 @@ A Makefile with some useful targets has been included to aid in the setting up a
    make execute
    ```
 
-   Or
+   Or:
 
    ```
    ./viaduct start [FLAGS]
@@ -112,7 +113,7 @@ A Makefile with some useful targets has been included to aid in the setting up a
 
       * Recommendations:
 
-         - Development: use `config/config.sample.yml`
+         - Local development: use `config/config.sample.yml`
 
          - Docker: keep default
 

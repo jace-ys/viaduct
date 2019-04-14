@@ -1,6 +1,6 @@
 # Basic Example
 
-A simple demo on using Viaduct locally. Viaduct acts as an API gateway that reverse proxies requests to the specified APIs.
+A simple demo on using Viaduct locally. Viaduct acts as an API gateway that proxies requests to the specified APIs.
 
 ## Installation
 
@@ -18,7 +18,7 @@ Refer to the main [README](https://github.com/jace-ys/viaduct#basic-example).
 
 API endpoints can be found in their respective API documentations.
 
-Requests to `http://localhost:5000/{service-prefix}/{request-uri}` will be resolved and proxied to:
+Requests to `http://localhost:5000/{service-prefix}/{request-uri}` will be proxied to:
 
 ```
 {upstream-url}/{request-uri}

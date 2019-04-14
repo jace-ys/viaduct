@@ -28,7 +28,7 @@ func Execute() {
 
 	startCmd := &cobra.Command{
 		Use:   "start",
-		Short: "Starts the viaduct server",
+		Short: "Start the viaduct server",
 		Run: func(cmd *cobra.Command, args []string) {
 			err := setupEnv(cmdFlags)
 			if err != nil {
