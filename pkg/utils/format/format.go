@@ -5,6 +5,7 @@ import (
 	"strings"
 )
 
+// Default format for logging API definitions
 var Apis = `
 		API Name: %s
 		Prefix: %s
@@ -48,6 +49,7 @@ func AddSlashes(prefix string) string {
 	return "/" + prefix + "/"
 }
 
+// Convert camel case to capital snake case with underscores: `ConfigFile` -> `CONFIG_FILE`
 func CamelToSnakeUnderscore(camelCase string) string {
 	matchFirstCap := regexp.MustCompile("(.)([A-Z][a-z]+)")
 	matchAllCap := regexp.MustCompile("([a-z0-9])([A-Z])")

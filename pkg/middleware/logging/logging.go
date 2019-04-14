@@ -14,7 +14,7 @@ import (
 // Set default format for logging requests
 var defaultFormat = "| {{.ApiName}} | {{.Hostname}} | {{.Method}} {{.RequestURI}} | {{.Status}} {{.Duration}}"
 
-// logEntry struct to be passed to template
+// requestEntry struct to be passed to template
 type requestEntry struct {
 	ApiName    string
 	Status     string
@@ -28,14 +28,15 @@ func CreateMiddleware(logger *log.Logger, registry *config.ApiRegistry) middlewa
 	return func(w http.ResponseWriter, r *http.Request, next http.HandlerFunc) {
 		start := time.Now()
 
+		// Initialize custom responseWriter and pass it to next
 		rw := &responseWriter{
 			ResponseWriter: w,
 			status:         http.StatusOK,
 		}
 		next(rw, r)
 
+		// Get API context to be logged
 		apiContext := getApiContext(r, registry)
-
 		entry := requestEntry{
 			ApiName:    apiContext.Name,
 			Status:     proxyStatus(rw.status),
@@ -45,6 +46,7 @@ func CreateMiddleware(logger *log.Logger, registry *config.ApiRegistry) middlewa
 			RequestURI: apiContext.RequestURI,
 		}
 
+		// Log request
 		buffer := &bytes.Buffer{}
 		t := template.Must(template.New("log").Parse(defaultFormat))
 		err := t.Execute(buffer, entry)

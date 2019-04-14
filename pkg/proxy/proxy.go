@@ -13,6 +13,7 @@ type Proxy struct {
 	reverseProxy *httputil.ReverseProxy
 }
 
+// Add header to enable CORS if allow_cross_origin is set to true
 func (p *Proxy) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	if p.api.AllowCrossOrigin {
 		w.Header().Set("Access-Control-Allow-Origin", "*")
@@ -21,6 +22,7 @@ func (p *Proxy) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	p.reverseProxy.ServeHTTP(w, r)
 }
 
+// Create new reverse proxy using API definition
 func New(api *domain.Api) *Proxy {
 	target := api.UpstreamUrl
 	reverseProxy := httputil.ReverseProxy{

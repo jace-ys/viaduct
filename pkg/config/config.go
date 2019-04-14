@@ -41,7 +41,7 @@ func RegisterApis(configFile string) (ar ApiRegistry, e error) {
 		return ar, err
 	}
 
-	// Unmarshal the YAML into the ApiRegistry struct
+	// Unmarshal the .yaml file into the ApiRegistry struct
 	err = yaml.Unmarshal(out, &ar)
 	if err != nil {
 		return ar, err

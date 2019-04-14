@@ -21,6 +21,7 @@ func (w *responseWriter) Write(b []byte) (int, error) {
 	return size, err
 }
 
+// Check if response status code is 302 Found or 200 OK
 func proxyStatus(code int) string {
 	if code == 304 || code == 200 {
 		return "\u2713"

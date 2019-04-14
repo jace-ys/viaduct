@@ -24,8 +24,9 @@ type Logger struct {
 	Aurora  aurora.Value
 }
 
+// Initialize instance of LogWithLevels to be used whenever this package is used
 func WithLevels(o ...Options) {
-	// Return default Logger if no options declared
+	// Return default Loggers if no options declared
 	var opts Options
 	if len(o) == 0 {
 		opts = Options{}
@@ -35,6 +36,7 @@ func WithLevels(o ...Options) {
 
 	au := aurora.NewAurora(!opts.DisableColors)
 
+	// Create Loggers with prefixes of different logging levels
 	logger = &LogWithLevels{
 		Debug:   NewLogger(au.Green(" DEBUG "), opts),
 		Warn:    NewLogger(au.Brown("WARNING"), opts),
@@ -43,7 +45,7 @@ func WithLevels(o ...Options) {
 	}
 }
 
-// Returns a new Logger instance, with coloured level added to prefix
+// Returns a new Logger instance with specified options
 func NewLogger(level aurora.Value, o Options) *log.Logger {
 	// Determine prefix
 	prefix := o.Prefix
@@ -72,6 +74,7 @@ func NewLogger(level aurora.Value, o Options) *log.Logger {
 	return log.New(output, prefix, flags)
 }
 
+// Helper functions to access a specific Logger
 func Debug() *log.Logger {
 	return logger.Debug
 }

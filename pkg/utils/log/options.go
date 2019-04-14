@@ -5,7 +5,7 @@ import (
 )
 
 type Options struct {
-	// Keyword wrapped with square brackets prefixed to log messages. Default: Viaduct
+	// Keyword wrapped with square brackets prefixed to log messages. Default: ""
 	Prefix string
 	// Disable colored logging. Default: false
 	DisableColors bool

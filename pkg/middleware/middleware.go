@@ -21,9 +21,11 @@ func Configure(middlewares map[string]bool, registry Registry) (stack []Middlewa
 				err := fmt.Errorf("Unknown middleware declared in config: %s", key)
 				return stack, err
 			}
+
 			stack = append(stack, registry[key])
 		}
 	}
+
 	// Return the middleware stack
 	return stack, nil
 }

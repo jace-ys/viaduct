@@ -17,6 +17,7 @@ func setupEnv(f *Flags) error {
 	return replaceWithEnv(flags)
 }
 
+// Create mapping of flag name to value
 func mapFlags(f *Flags) (m map[string]interface{}, e error) {
 	out, err := json.Marshal(f)
 	if err != nil {
@@ -31,6 +32,7 @@ func mapFlags(f *Flags) (m map[string]interface{}, e error) {
 	return m, nil
 }
 
+// Set flag value as env variable if none detected
 func replaceWithEnv(flags map[string]interface{}) error {
 	for key, value := range flags {
 		key = format.CamelToSnakeUnderscore(key)
