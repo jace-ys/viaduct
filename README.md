@@ -52,7 +52,7 @@ apis:
       logging: true
 ```
 
-If the Viaduct server was running at localhost:5000, http://localhost:5000/typicode/posts would resolve and proxy to https://jsonplaceholder.typicode.com/posts.
+If the Viaduct server was running at localhost:5000, http://localhost:5000/typicode/posts would proxy to https://jsonplaceholder.typicode.com/posts.
 
 For more, see [sample config file](https://github.com/jace-ys/viaduct/blob/master/config/config.sample.yaml) or [examples](https://github.com/jace-ys/viaduct/tree/master/examples).
 
@@ -154,8 +154,11 @@ Run the following command to start Viaduct locally, using the specified config f
 Run the following command to pull the required Docker images and start the containers. Refer [here](https://github.com/jace-ys/viaduct/tree/master/examples/docker-compose) for more info on the API endpoints.
 
 ```
-docker-compose -f examples/docker-compose/docker-compose.yaml up
+docker-compose -f examples/docker-compose/docker-compose.yml up
 ```
 
 ## Contribute
 If you are interested in contributing, make a pull request and/or email me at jaceys.tan@gmail.com.
+
+## License
+Viaduct is licensed under the [BSD-3 License](https://github.com/jace-ys/viaduct/tree/master/LICENSE).
