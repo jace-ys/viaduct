@@ -43,7 +43,7 @@ func Execute() {
 	}
 
 	startCmd.Flags().StringVarP(&cmdFlags.Port, "port", "p", config.DefaultPort, "Port to run Viaduct server on")
-	startCmd.Flags().StringVarP(&cmdFlags.ConfigFile, "file", "f", config.DefaultConfigFile, "Path to .yml configuration file")
+	startCmd.Flags().StringVarP(&cmdFlags.ConfigFile, "file", "f", config.DefaultConfigFile, "Path to .yaml configuration file")
 
 	rootCmd.AddCommand(startCmd)
 

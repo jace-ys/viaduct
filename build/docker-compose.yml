@@ -7,6 +7,6 @@ services:
       dockerfile: build/Dockerfile
     image: jaceys/viaduct
     volumes:
-      - ../config/config.sample.yml:/config/config.yml
+      - ../config/config.sample.yaml:/config/config.yaml
     ports:
       - 5000:80

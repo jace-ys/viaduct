@@ -24,4 +24,4 @@ Requests to `http://localhost:5000/{api-prefix}/{request-uri}` will be proxied t
 {upstream-url}/{request-uri}
 ```
 
-Refer to the [config file](https://github.com/jace-ys/viaduct/blob/master/examples/basic/config.yml) for the prefix and upstream URL of each API.
+Refer to the [config file](https://github.com/jace-ys/viaduct/blob/master/examples/basic/config.yaml) for the prefix and upstream URL of each API.

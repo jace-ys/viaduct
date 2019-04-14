@@ -5,7 +5,7 @@ services:
     image: jaceys/viaduct:latest
     container_name: service.api-gateway
     volumes:
-      - ./config.yml:/config/config.yml
+      - ./config.yaml:/config/config.yaml
     ports:
       - 5000:80
 

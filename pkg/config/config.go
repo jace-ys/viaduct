@@ -11,7 +11,7 @@ import (
 
 var (
 	DefaultPort       = "80"
-	DefaultConfigFile = "/config/config.yml"
+	DefaultConfigFile = "/config/config.yaml"
 )
 
 type Config struct {

@@ -16,7 +16,7 @@ Viaduct comes with a CLI for easy usage and configuration. See [usage](https://g
 
 ## Configuration
 
-Viaduct requires no data store and is instead configured using a .yml file containing all the API definitions. File name is not important - you can specify the config file to be used via the CLI or environmental variables.
+Viaduct requires no data store and is instead configured using a .yaml file containing all the API definitions. File name is not important - you can specify the config file to be used via the CLI or environmental variables.
 
 #### API definition:
 
@@ -54,7 +54,7 @@ apis:
 
 If the Viaduct server was running at localhost:5000, http://localhost:5000/typicode/posts would resolve and proxy to https://jsonplaceholder.typicode.com/posts.
 
-For more, see [sample config file](https://github.com/jace-ys/viaduct/blob/master/config/config.sample.yml) or [examples](https://github.com/jace-ys/viaduct/tree/master/examples).
+For more, see [sample config file](https://github.com/jace-ys/viaduct/blob/master/config/config.sample.yaml) or [examples](https://github.com/jace-ys/viaduct/tree/master/examples).
 
 ## Usage
 
@@ -105,15 +105,15 @@ A Makefile with some useful targets has been included to aid in the setting up a
 
    2. Config File `-f, --file`
 
-      * Description: path to .yml configuration file
+      * Description: path to .yaml configuration file
 
-      * Default: `/config/config.yml`
+      * Default: `/config/config.yaml`
 
       * Env: `CONFIG_FILE`
 
       * Recommendations:
 
-         - Local development: use `config/config.sample.yml`
+         - Local development: use `config/config.sample.yaml`
 
          - Docker: keep default
 
@@ -127,13 +127,13 @@ A Makefile with some useful targets has been included to aid in the setting up a
 make container
 ```
 
-2. Run Docker Image (uses `config/config.sample.yml` as mounted volume)
+2. Run Docker Image (uses `config/config.sample.yaml` as mounted volume)
 
 ```
 make run
 ```
 
-3. Run with Docker Compose (uses `config/config.sample.yml` as mounted volume)
+3. Run with Docker Compose (uses `config/config.sample.yaml` as mounted volume)
 
 ```
 make compose
@@ -146,7 +146,7 @@ make compose
 Run the following command to start Viaduct locally, using the specified config file. Refer [here](https://github.com/jace-ys/viaduct/tree/master/examples/basic) for more info on the API endpoints.
 
 ```
-./viaduct start -p 5000 -f examples/basic/config.yml
+./viaduct start -p 5000 -f examples/basic/config.yaml
 ```
 
 #### Docker Compose Example
@@ -154,7 +154,7 @@ Run the following command to start Viaduct locally, using the specified config f
 Run the following command to pull the required Docker images and start the containers. Refer [here](https://github.com/jace-ys/viaduct/tree/master/examples/docker-compose) for more info on the API endpoints.
 
 ```
-docker-compose -f examples/docker-compose/docker-compose.yml up
+docker-compose -f examples/docker-compose/docker-compose.yaml up
 ```
 
 ## Contribute

@@ -19,7 +19,7 @@ type typicodePost struct {
 }
 
 func TestProxy(t *testing.T) {
-	apiRegistry, err := config.RegisterApis("../../config/config.sample.yml")
+	apiRegistry, err := config.RegisterApis("../../config/config.sample.yaml")
 	if err != nil {
 		t.Error(err)
 	}

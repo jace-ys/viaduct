@@ -9,7 +9,7 @@ import (
 
 func TestLoadConfig(t *testing.T) {
 	os.Setenv("PORT", "3000")
-	os.Setenv("CONFIG_FILE", "config/config.sample.yml")
+	os.Setenv("CONFIG_FILE", "config/config.sample.yaml")
 
 	conf, err := LoadConfig()
 	if err != nil {
@@ -17,11 +17,11 @@ func TestLoadConfig(t *testing.T) {
 	}
 
 	assert.Equal(t, "3000", conf.Port)
-	assert.Equal(t, "config/config.sample.yml", conf.ConfigFile)
+	assert.Equal(t, "config/config.sample.yaml", conf.ConfigFile)
 }
 
 func TestDefineApis(t *testing.T) {
-	apiRegistry, err := RegisterApis("../../config/config.sample.yml")
+	apiRegistry, err := RegisterApis("../../config/config.sample.yaml")
 	if err != nil {
 		t.Error(err)
 	}

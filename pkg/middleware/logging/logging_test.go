@@ -17,7 +17,7 @@ import (
 func TestLoggingMiddleware(t *testing.T) {
 	var buff bytes.Buffer
 
-	apiRegistry, err := config.RegisterApis("../../../config/config.sample.yml")
+	apiRegistry, err := config.RegisterApis("../../../config/config.sample.yaml")
 	if err != nil {
 		t.Error(err)
 	}
@@ -49,7 +49,7 @@ func TestLoggingMiddleware(t *testing.T) {
 func TestApiContext(t *testing.T) {
 	var buff bytes.Buffer
 
-	apiRegistry, err := config.RegisterApis("../../../config/config.sample.yml")
+	apiRegistry, err := config.RegisterApis("../../../config/config.sample.yaml")
 	if err != nil {
 		t.Error(err)
 	}
