@@ -33,8 +33,8 @@ func Start() error {
 		"logging": logging.CreateMiddleware(log.Request(), &serviceRegistry),
 	}
 
-	// Apply middleware common to every request route
-	apiProvider.CommonMiddleware(middlewareRegistry["logging"])
+	// // Apply middleware common to every request route
+	// apiProvider.CommonMiddleware(middlewareRegistry["logging"])
 
 	for _, serviceDefinition := range serviceRegistry.Services {
 		// Create a new reverse proxy for each service

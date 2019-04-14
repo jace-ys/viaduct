@@ -12,3 +12,5 @@ services:
     name: "JSONPlaceholder"
     prefix: "typicode"
     upstream_url: "https://jsonplaceholder.typicode.com"
+    middlewares:
+      logging: true

@@ -51,4 +51,3 @@ clean:
 	@echo "==> Cleaning up.."
 	go mod tidy
 	go clean
-	docker rmi ${IMAGE}:${VERSION}
