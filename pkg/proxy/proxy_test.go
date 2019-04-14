@@ -19,21 +19,21 @@ type typicodePost struct {
 }
 
 func TestProxy(t *testing.T) {
-	serviceRegistry, err := config.RegisterServices("../../config/config.sample.yml")
+	apiRegistry, err := config.RegisterApis("../../config/config.sample.yml")
 	if err != nil {
 		t.Error(err)
 	}
 
-	testService := serviceRegistry.Services["typicode"]
-	proxy := New(&testService)
+	testApi := apiRegistry.Apis["typicode"]
+	proxy := New(&testApi)
 
-	proxyHandler := StripPrefix(proxy.service.Prefix, proxy)
+	proxyHandler := StripPrefix(proxy.api.Prefix, proxy)
 
 	req, _ := http.NewRequest("GET", "/typicode/posts/1", nil)
 	res := httptest.NewRecorder()
 	proxyHandler.ServeHTTP(res, req)
 
-	assert.Equal(t, "JSONPlaceholder", proxy.service.Name)
+	assert.Equal(t, "JSONPlaceholder", proxy.api.Name)
 	assert.Equal(t, http.StatusOK, res.Code)
 	assert.Equal(t, "application/json; charset=utf-8", res.HeaderMap.Get("Content-Type"))
 	assert.Equal(t, true, res.Body.Len() > 0)

@@ -8,32 +8,32 @@ import (
 	"github.com/jace-ys/viaduct/pkg/utils/format"
 )
 
-type serviceContext struct {
+type apiContext struct {
 	Name       string
 	Host       string
 	Method     string
 	RequestURI string
 }
 
-func getServiceContext(r *http.Request, registry *config.ServiceRegistry) *serviceContext {
+func getApiContext(r *http.Request, registry *config.ApiRegistry) *apiContext {
 	// Trim prefix to obtain actual request URI
-	for _, service := range registry.Services {
-		prefix := format.AddSlashes(service.Prefix)
+	for _, apiDefinition := range registry.Apis {
+		prefix := format.AddSlashes(apiDefinition.Prefix)
 		actualURI := strings.TrimPrefix(r.RequestURI, prefix)
 
-		// Find the service that matches the request prefix
+		// Find the API that matches the request prefix
 		if strings.Contains(r.RequestURI, prefix) {
-			return &serviceContext{
-				Name:       service.Name,
-				Host:       service.UpstreamUrl.Host,
+			return &apiContext{
+				Name:       apiDefinition.Name,
+				Host:       apiDefinition.UpstreamUrl.Host,
 				Method:     r.Method,
-				RequestURI: format.SingleJoiningSlash(service.UpstreamUrl.Path, actualURI),
+				RequestURI: format.SingleJoiningSlash(apiDefinition.UpstreamUrl.Path, actualURI),
 			}
 		}
 	}
 
 	// Else return `Unknown Endpoint`
-	return &serviceContext{
+	return &apiContext{
 		Name:       "Unknown Endpoint",
 		Host:       r.Host,
 		Method:     r.Method,

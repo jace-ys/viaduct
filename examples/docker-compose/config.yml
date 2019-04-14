@@ -1,4 +1,4 @@
-services:
+apis:
   users:
     name: "Users API"
     prefix: "api/users"

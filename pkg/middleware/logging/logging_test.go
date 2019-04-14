@@ -17,7 +17,7 @@ import (
 func TestLoggingMiddleware(t *testing.T) {
 	var buff bytes.Buffer
 
-	serviceRegistry, err := config.RegisterServices("../../../config/config.sample.yml")
+	apiRegistry, err := config.RegisterApis("../../../config/config.sample.yml")
 	if err != nil {
 		t.Error(err)
 	}
@@ -27,7 +27,7 @@ func TestLoggingMiddleware(t *testing.T) {
 		Out:    &buff,
 	})
 
-	logging := CreateMiddleware(log.Request(), &serviceRegistry)
+	logging := CreateMiddleware(log.Request(), &apiRegistry)
 
 	n := negroni.New()
 	n.UseFunc(logging)
@@ -46,10 +46,10 @@ func TestLoggingMiddleware(t *testing.T) {
 	assert.Equal(t, true, buff.Len() > 0)
 }
 
-func TestServiceContext(t *testing.T) {
+func TestApiContext(t *testing.T) {
 	var buff bytes.Buffer
 
-	serviceRegistry, err := config.RegisterServices("../../../config/config.sample.yml")
+	apiRegistry, err := config.RegisterApis("../../../config/config.sample.yml")
 	if err != nil {
 		t.Error(err)
 	}
@@ -59,7 +59,7 @@ func TestServiceContext(t *testing.T) {
 		Out:    &buff,
 	})
 
-	logging := CreateMiddleware(log.Request(), &serviceRegistry)
+	logging := CreateMiddleware(log.Request(), &apiRegistry)
 
 	n := negroni.New()
 	n.UseFunc(logging)
@@ -73,9 +73,9 @@ func TestServiceContext(t *testing.T) {
 
 	n.ServeHTTP(res, req)
 
-	serviceContext := getServiceContext(req, &serviceRegistry)
+	apiContext := getApiContext(req, &apiRegistry)
 
-	assert.Equal(t, true, strings.Contains(buff.String(), serviceContext.Name))
-	assert.Equal(t, true, strings.Contains(buff.String(), serviceContext.Host))
-	assert.Equal(t, "GET", serviceContext.Method)
+	assert.Equal(t, true, strings.Contains(buff.String(), apiContext.Name))
+	assert.Equal(t, true, strings.Contains(buff.String(), apiContext.Host))
+	assert.Equal(t, "GET", apiContext.Method)
 }

@@ -11,7 +11,7 @@ type Middleware func(w http.ResponseWriter, r *http.Request, next http.HandlerFu
 // Registry associates each Middleware with its name, to be used by Configure
 type Registry map[string]Middleware
 
-// Spits out a stack of middlewares using the provided registry, based on the middleware config for each service
+// Spits out a stack of middlewares using the provided registry, based on the middleware config for each API
 func Configure(middlewares map[string]bool, registry Registry) (stack []Middleware, e error) {
 	// Add middlewares declared in config to stack
 	for key, value := range middlewares {

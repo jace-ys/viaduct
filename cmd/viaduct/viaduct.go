@@ -19,8 +19,8 @@ func Start() error {
 		return err
 	}
 
-	// Load service definitions declared in config file
-	serviceRegistry, err := config.RegisterServices(conf.ConfigFile)
+	// Load API definitions declared in config file
+	apiRegistry, err := config.RegisterApis(conf.ConfigFile)
 	if err != nil {
 		return err
 	}
@@ -30,40 +30,40 @@ func Start() error {
 
 	// Register middlewares to be used by middleware.Configure
 	middlewareRegistry := middleware.Registry{
-		"logging": logging.CreateMiddleware(log.Request(), &serviceRegistry),
+		"logging": logging.CreateMiddleware(log.Request(), &apiRegistry),
 	}
 
-	// // Apply middleware common to every request route
-	// apiProvider.CommonMiddleware(middlewareRegistry["logging"])
+	// Apply middleware common to every request route
+	apiProvider.CommonMiddleware(middlewareRegistry["logging"])
 
-	for _, serviceDefinition := range serviceRegistry.Services {
-		// Create a new reverse proxy for each service
-		reverseProxy := proxy.New(&serviceDefinition)
+	for _, apiDefinition := range apiRegistry.Apis {
+		// Create a new reverse proxy for each API
+		reverseProxy := proxy.New(&apiDefinition)
 
 		// Add surrounding slashes to the prefix
-		prefix := format.AddSlashes(serviceDefinition.Prefix)
+		prefix := format.AddSlashes(apiDefinition.Prefix)
 
 		// Strip prefix before passing to proxy
 		handler := http.StripPrefix(prefix, reverseProxy)
 
-		// Configure a stack of middlewares for each service
-		middlewareStack, err := middleware.Configure(serviceDefinition.Middlewares, middlewareRegistry)
+		// Configure a stack of middlewares for each API
+		middlewareStack, err := middleware.Configure(apiDefinition.Middlewares, middlewareRegistry)
 		if err != nil {
 			return err
 		}
 
 		log.Debug().Printf(
-			format.Services,
-			serviceDefinition.Name,
+			format.Apis,
+			apiDefinition.Name,
 			prefix,
-			serviceDefinition.UpstreamUrl,
-			format.Methods(serviceDefinition.Methods),
-			serviceDefinition.AllowCrossOrigin,
-			format.Middleware(serviceDefinition.Middlewares),
+			apiDefinition.UpstreamUrl,
+			format.Methods(apiDefinition.Methods),
+			apiDefinition.AllowCrossOrigin,
+			format.Middleware(apiDefinition.Middlewares),
 		)
 
 		// Handle requests with signature /prefix/* using the proxy and apply the stack of middlewares to be handled
-		apiProvider.Handle(serviceDefinition.Methods, prefix+"*", handler, middlewareStack...)
+		apiProvider.Handle(apiDefinition.Methods, prefix+"*", handler, middlewareStack...)
 	}
 
 	// Start ListenAndServe using apiProvider.server

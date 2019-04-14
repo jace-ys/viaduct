@@ -5,21 +5,21 @@ import (
 	"strings"
 )
 
-type Service struct {
+type Api struct {
 	Name             string
 	Prefix           string
-	UpstreamUrl      *ServiceURL `yaml:"upstream_url"`
+	UpstreamUrl      *ApiURL `yaml:"upstream_url"`
 	Methods          []string
 	AllowCrossOrigin bool `yaml:"allow_cross_origin"`
 	Middlewares      map[string]bool
 }
 
-type ServiceURL struct {
+type ApiURL struct {
 	*url.URL
 }
 
 // Tell yaml parser how to unmarshal a string to type Url
-func (u *ServiceURL) UnmarshalYAML(unmarshal func(interface{}) error) error {
+func (u *ApiURL) UnmarshalYAML(unmarshal func(interface{}) error) error {
 	var s string
 
 	// Unmarshal the value into a string

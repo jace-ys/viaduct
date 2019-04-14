@@ -19,8 +19,8 @@ type Config struct {
 	ConfigFile string `env:"CONFIG_FILE"`
 }
 
-type ServiceRegistry struct {
-	Services map[string]domain.Service
+type ApiRegistry struct {
+	Apis map[string]domain.Api
 }
 
 func LoadConfig() (c Config, e error) {
@@ -34,19 +34,19 @@ func LoadConfig() (c Config, e error) {
 	return c, nil
 }
 
-func RegisterServices(configFile string) (s ServiceRegistry, e error) {
+func RegisterApis(configFile string) (ar ApiRegistry, e error) {
 	// Read the configuration file
 	out, err := ioutil.ReadFile(configFile)
 	if err != nil {
-		return s, err
+		return ar, err
 	}
 
-	// Unmarshal the YAML into the ServiceRegistry struct
-	err = yaml.Unmarshal(out, &s)
+	// Unmarshal the YAML into the ApiRegistry struct
+	err = yaml.Unmarshal(out, &ar)
 	if err != nil {
-		return s, err
+		return ar, err
 	}
 
-	// Return the ServiceRegistry struct
-	return s, nil
+	// Return the ApiRegistry struct
+	return ar, nil
 }

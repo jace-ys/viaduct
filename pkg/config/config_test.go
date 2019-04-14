@@ -20,18 +20,18 @@ func TestLoadConfig(t *testing.T) {
 	assert.Equal(t, "config/config.sample.yml", conf.ConfigFile)
 }
 
-func TestDefineServices(t *testing.T) {
-	serviceRegistry, err := RegisterServices("../../config/config.sample.yml")
+func TestDefineApis(t *testing.T) {
+	apiRegistry, err := RegisterApis("../../config/config.sample.yml")
 	if err != nil {
 		t.Error(err)
 	}
 
-	testService := serviceRegistry.Services["test"]
+	testApi := apiRegistry.Apis["test"]
 
-	assert.Equal(t, "Testing", testService.Name)
-	assert.Equal(t, "test", testService.Prefix)
-	assert.Equal(t, "http://localhost:8080/invalid/url", testService.UpstreamUrl.String())
-	assert.Equal(t, "GET", testService.Methods[0])
-	assert.Equal(t, true, testService.AllowCrossOrigin)
-	assert.Equal(t, true, testService.Middlewares["logging"])
+	assert.Equal(t, "Testing", testApi.Name)
+	assert.Equal(t, "test", testApi.Prefix)
+	assert.Equal(t, "http://localhost:8080/invalid/url", testApi.UpstreamUrl.String())
+	assert.Equal(t, "GET", testApi.Methods[0])
+	assert.Equal(t, true, testApi.AllowCrossOrigin)
+	assert.Equal(t, true, testApi.Middlewares["logging"])
 }

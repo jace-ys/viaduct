@@ -41,7 +41,7 @@ Viaduct requires no data store and is instead configured using a .yml file conta
       Default: [] (none)
 
 ```
-services:
+apis:
   typicode:
     name: "JSONPlaceholder"
     prefix: "typicode"

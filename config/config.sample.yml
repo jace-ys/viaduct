@@ -1,4 +1,4 @@
-services:
+apis:
   test:
     name: "Testing"
     prefix: "test"

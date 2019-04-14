@@ -5,8 +5,8 @@ import (
 	"strings"
 )
 
-var Services = `
-		Service: %s
+var Apis = `
+		API Name: %s
 		Prefix: %s
 		Upstream Url: %s
 		Methods: %v

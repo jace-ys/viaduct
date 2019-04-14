@@ -18,7 +18,7 @@ Refer to the main [README](https://github.com/jace-ys/viaduct#basic-example).
 
 API endpoints can be found in their respective API documentations.
 
-Requests to `http://localhost:5000/{service-prefix}/{request-uri}` will be proxied to:
+Requests to `http://localhost:5000/{api-prefix}/{request-uri}` will be proxied to:
 
 ```
 {upstream-url}/{request-uri}
