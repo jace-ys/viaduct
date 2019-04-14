@@ -1,0 +1,30 @@
+services:
+  users:
+    name: "Users API"
+    prefix: "users"
+    upstream_url: "https://reqres.in/api/users/"
+
+  todos:
+    name: "To-Do's API"
+    prefix: "todos"
+    upstream_url: "https://jsonplaceholder.typicode.com/todos"
+
+  brewdog:
+    name: "Brewdog API"
+    prefix: "brewdog"
+    upstream_url: "https://api.punkapi.com/v2/beers"
+
+  iceandfire:
+    name: "Game of Thrones API"
+    prefix: "iceandfire"
+    upstream_url: "https://anapioficeandfire.com/api/"
+
+  weather-ldn:
+    name: "Weather API - London"
+    prefix: "weather/london"
+    upstream_url: "https://www.metaweather.com/api/location/44418"
+
+  weather-sgp:
+    name: "Weather API - Singapore"
+    prefix: "weather/singapore"
+    upstream_url: "https://www.metaweather.com/api/location/1062617"

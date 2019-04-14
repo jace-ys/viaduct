@@ -1,0 +1,10 @@
+services:
+  users:
+    name: "Users API"
+    prefix: "api/users"
+    upstream_url: "http://service.backend-1:3000/users"
+
+  todos:
+    name: "To-Do's API"
+    prefix: "api/todos"
+    upstream_url: "http://service.backend-2:3000/todos"
