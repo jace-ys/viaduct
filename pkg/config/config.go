@@ -9,9 +9,14 @@ import (
 	"github.com/jace-ys/viaduct/pkg/domain"
 )
 
+var (
+	DefaultPort       = "80"
+	DefaultConfigFile = "/config/config.yml"
+)
+
 type Config struct {
-	Port       string `env:"PORT" envDefault:"80"`
-	ConfigPath string `env:"CONFIG_PATH" envDefault:"/config/config.yml"`
+	Port       string `env:"PORT"`
+	ConfigFile string `env:"CONFIG_FILE"`
 }
 
 type ServiceRegistry struct {
@@ -29,9 +34,9 @@ func LoadConfig() (c Config, e error) {
 	return c, nil
 }
 
-func RegisterServices(configPath string) (s ServiceRegistry, e error) {
+func RegisterServices(configFile string) (s ServiceRegistry, e error) {
 	// Read the configuration file
-	out, err := ioutil.ReadFile(configPath)
+	out, err := ioutil.ReadFile(configFile)
 	if err != nil {
 		return s, err
 	}

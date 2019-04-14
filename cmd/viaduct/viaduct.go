@@ -20,7 +20,7 @@ func Start() error {
 	}
 
 	// Load service definitions declared in config file
-	serviceRegistry, err := config.RegisterServices(conf.ConfigPath)
+	serviceRegistry, err := config.RegisterServices(conf.ConfigFile)
 	if err != nil {
 		return err
 	}

@@ -45,6 +45,6 @@ func TestAddSlashes(t *testing.T) {
 }
 
 func TestCamelToSnakeUnderscore(t *testing.T) {
-	snakeUnderscore := CamelToSnakeUnderscore("ConfigPath")
-	assert.Equal(t, "CONFIG_PATH", snakeUnderscore)
+	snakeUnderscore := CamelToSnakeUnderscore("ConfigFile")
+	assert.Equal(t, "CONFIG_FILE", snakeUnderscore)
 }

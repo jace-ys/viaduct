@@ -12,8 +12,3 @@ services:
     name: "JSONPlaceholder"
     prefix: "typicode"
     upstream_url: "https://jsonplaceholder.typicode.com"
-
-  reqres:
-    name: "Reqres"
-    prefix: "reqres/user"
-    upstream_url: "https://reqres.in/api/users/"

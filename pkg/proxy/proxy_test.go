@@ -37,23 +37,8 @@ func TestProxy(t *testing.T) {
 	assert.Equal(t, http.StatusOK, res.Code)
 	assert.Equal(t, "application/json; charset=utf-8", res.HeaderMap.Get("Content-Type"))
 	assert.Equal(t, true, res.Body.Len() > 0)
-}
 
-func TestJsonBody(t *testing.T) {
-	serviceRegistry, err := config.RegisterServices("../../config/config.sample.yml")
-	if err != nil {
-		t.Error(err)
-	}
-
-	testService := serviceRegistry.Services["typicode"]
-	proxy := New(&testService)
-
-	proxyHandler := StripPrefix(proxy.service.Prefix, proxy)
-
-	req, _ := http.NewRequest("GET", "/typicode/posts/1", nil)
-	res := httptest.NewRecorder()
-	proxyHandler.ServeHTTP(res, req)
-
+	// Test content of JSON body
 	jsonBody := &typicodePost{}
 	decoder := json.NewDecoder(res.Body)
 	err = decoder.Decode(jsonBody)
