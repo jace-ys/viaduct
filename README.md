@@ -1,7 +1,7 @@
 [![Build Status][ci-build]][ci-status]
 [![Docker Pulls][docker-pulls]][docker-image]
 
-[ci-build]:	https://img.shields.io/travis/jace-ys/viaduct/master.svg?style=for-the-badge&logo=travis
+[ci-build]:	https://img.shields.io/travis/com/jace-ys/viaduct/master.svg?style=for-the-badge&logo=travis
 [ci-status]: https://travis-ci.com/jace-ys/viaduct
 [docker-pulls]: https://img.shields.io/docker/pulls/jaceys/viaduct.svg?style=for-the-badge&logo=docker
 [docker-image]: https://hub.docker.com/r/jaceys/viaduct
