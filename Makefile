@@ -6,7 +6,7 @@ CONFIGFILE = config/config.sample.yaml
 DOCKERFILE = build/Dockerfile
 COMPOSEFILE = build/docker-compose.yaml
 
-.PHONY: all test build execute docker container run format clean
+.PHONY: all test build run docker image container format clean
 
 all: format build execute
 
@@ -19,18 +19,18 @@ build:
 	@echo "==> Building from source.."
 	go build -o ${TARGET} ${SOURCE}
 
-execute:
+run:
 	@echo "==> Running executable.."
 	./viaduct start -p 3000 -f config/config.sample.yaml
 
 # Target to build and run Docker image
-docker: container run
+docker: image container
 
-container:
+image:
 	@echo "==> Building image.."
 	docker build -f ${DOCKERFILE} -t ${IMAGE}:${VERSION} .
 
-run:
+container:
 	@echo "==> Running container.."
 	docker run --rm -p 8000:80 -v $(shell pwd)/${CONFIGFILE}:/config/config.yaml ${IMAGE}:${VERSION}
 
