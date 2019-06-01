@@ -1,4 +1,4 @@
-package cmd
+package config
 
 import (
 	"encoding/json"
@@ -8,7 +8,7 @@ import (
 	"github.com/jace-ys/viaduct/pkg/utils/log"
 )
 
-func setupEnv(f *Flags) error {
+func SetupEnv(f *Config) error {
 	flags, err := mapFlags(f)
 	if err != nil {
 		return err
@@ -18,7 +18,7 @@ func setupEnv(f *Flags) error {
 }
 
 // Create mapping of flag name to value
-func mapFlags(f *Flags) (m map[string]interface{}, e error) {
+func mapFlags(f *Config) (m map[string]interface{}, e error) {
 	out, err := json.Marshal(f)
 	if err != nil {
 		return m, err

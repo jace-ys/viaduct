@@ -30,7 +30,7 @@ func Execute() {
 		Use:   "start",
 		Short: "Start the viaduct server",
 		Run: func(cmd *cobra.Command, args []string) {
-			err := setupEnv(cmdFlags)
+			err := config.SetupEnv(&cmdFlags.Config)
 			if err != nil {
 				log.Error().Fatal(err)
 			}
