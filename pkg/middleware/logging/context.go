@@ -4,7 +4,7 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/jace-ys/viaduct/pkg/config"
+	"github.com/jace-ys/viaduct/pkg/api"
 	"github.com/jace-ys/viaduct/pkg/utils/format"
 )
 
@@ -15,7 +15,7 @@ type apiContext struct {
 	RequestURI string
 }
 
-func getApiContext(r *http.Request, registry *config.ApiRegistry) *apiContext {
+func getApiContext(r *http.Request, registry *api.Registry) *apiContext {
 	// Trim prefix to obtain actual request URI
 	for _, apiDefinition := range registry.Apis {
 		prefix := format.AddSlashes(apiDefinition.Prefix)

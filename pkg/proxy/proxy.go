@@ -4,12 +4,12 @@ import (
 	"net/http"
 	"net/http/httputil"
 
-	"github.com/jace-ys/viaduct/pkg/domain"
+	"github.com/jace-ys/viaduct/pkg/api"
 	"github.com/jace-ys/viaduct/pkg/utils/format"
 )
 
 type Proxy struct {
-	api          *domain.Api
+	api          *api.Api
 	reverseProxy *httputil.ReverseProxy
 }
 
@@ -23,7 +23,7 @@ func (p *Proxy) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 }
 
 // Create new reverse proxy using API definition
-func New(api *domain.Api) *Proxy {
+func New(api *api.Api) *Proxy {
 	target := api.UpstreamUrl
 	reverseProxy := httputil.ReverseProxy{
 		Director: func(r *http.Request) {

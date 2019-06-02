@@ -3,6 +3,7 @@ package viaduct
 import (
 	"net/http"
 
+	"github.com/jace-ys/viaduct/pkg/api"
 	"github.com/jace-ys/viaduct/pkg/config"
 	"github.com/jace-ys/viaduct/pkg/middleware"
 	"github.com/jace-ys/viaduct/pkg/middleware/logging"
@@ -20,7 +21,7 @@ func Start() error {
 	}
 
 	// Load API definitions declared in config file
-	apiRegistry, err := config.RegisterApis(conf.ConfigFile)
+	apiRegistry, err := api.RegisterApis(conf.ConfigFile)
 	if err != nil {
 		return err
 	}

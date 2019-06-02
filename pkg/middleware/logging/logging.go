@@ -7,7 +7,7 @@ import (
 	"text/template"
 	"time"
 
-	"github.com/jace-ys/viaduct/pkg/config"
+	"github.com/jace-ys/viaduct/pkg/api"
 	"github.com/jace-ys/viaduct/pkg/middleware"
 )
 
@@ -24,7 +24,7 @@ type requestEntry struct {
 	RequestURI string
 }
 
-func CreateMiddleware(logger *log.Logger, registry *config.ApiRegistry) middleware.Middleware {
+func CreateMiddleware(logger *log.Logger, registry *api.Registry) middleware.Middleware {
 	return func(w http.ResponseWriter, r *http.Request, next http.HandlerFunc) {
 		start := time.Now()
 

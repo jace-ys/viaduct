@@ -1,9 +1,33 @@
-package domain
+package api
 
 import (
+	"io/ioutil"
 	"net/url"
 	"strings"
+
+	"gopkg.in/yaml.v2"
 )
+
+type Registry struct {
+	Apis map[string]Api
+}
+
+func RegisterApis(configFile string) (ar Registry, e error) {
+	// Read the configuration file
+	out, err := ioutil.ReadFile(configFile)
+	if err != nil {
+		return ar, err
+	}
+
+	// Unmarshal the .yaml file into the ApiRegistry struct
+	err = yaml.Unmarshal(out, &ar)
+	if err != nil {
+		return ar, err
+	}
+
+	// Return the ApiRegistry struct
+	return ar, nil
+}
 
 type Api struct {
 	Name             string
