@@ -9,10 +9,10 @@ import (
 )
 
 type Registry struct {
-	Apis map[string]Api
+	APIs map[string]API
 }
 
-func RegisterApis(configFile string) (ar Registry, e error) {
+func RegisterAPIs(configFile string) (ar Registry, e error) {
 	// Read the configuration file
 	out, err := ioutil.ReadFile(configFile)
 	if err != nil {
@@ -29,7 +29,7 @@ func RegisterApis(configFile string) (ar Registry, e error) {
 	return ar, nil
 }
 
-type Api struct {
+type API struct {
 	Name             string
 	Prefix           string
 	UpstreamUrl      *Url `yaml:"upstream_url"`

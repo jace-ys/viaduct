@@ -9,7 +9,7 @@ import (
 )
 
 type Proxy struct {
-	api          *api.Api
+	api          *api.API
 	reverseProxy *httputil.ReverseProxy
 }
 
@@ -23,7 +23,7 @@ func (p *Proxy) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 }
 
 // Create new reverse proxy using API definition
-func New(api *api.Api) *Proxy {
+func New(api *api.API) *Proxy {
 	target := api.UpstreamUrl
 	reverseProxy := httputil.ReverseProxy{
 		Director: func(r *http.Request) {

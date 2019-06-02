@@ -21,7 +21,7 @@ func Start() error {
 	}
 
 	// Load API definitions declared in config file
-	apiRegistry, err := api.RegisterApis(conf.ConfigFile)
+	apiRegistry, err := api.RegisterAPIs(conf.ConfigFile)
 	if err != nil {
 		return err
 	}
@@ -37,7 +37,7 @@ func Start() error {
 	// Apply middleware common to every request route
 	apiProvider.CommonMiddleware(middlewareRegistry["logging"])
 
-	for _, apiDefinition := range apiRegistry.Apis {
+	for _, apiDefinition := range apiRegistry.APIs {
 		// Create a new reverse proxy for each API
 		reverseProxy := proxy.New(&apiDefinition)
 

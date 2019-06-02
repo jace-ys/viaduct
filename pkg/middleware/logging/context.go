@@ -17,7 +17,7 @@ type apiContext struct {
 
 func getApiContext(r *http.Request, registry *api.Registry) *apiContext {
 	// Trim prefix to obtain actual request URI
-	for _, apiDefinition := range registry.Apis {
+	for _, apiDefinition := range registry.APIs {
 		prefix := format.AddSlashes(apiDefinition.Prefix)
 		actualURI := strings.TrimPrefix(r.RequestURI, prefix)
 
