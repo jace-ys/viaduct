@@ -36,7 +36,7 @@ func CreateMiddleware(logger *log.Logger, registry *api.Registry) middleware.Mid
 		next(rw, r)
 
 		// Get API context to be logged
-		apiContext := getApiContext(r, registry)
+		apiContext := getAPIContext(r, registry)
 		entry := requestEntry{
 			ApiName:    apiContext.Name,
 			Status:     proxyStatus(rw.status),

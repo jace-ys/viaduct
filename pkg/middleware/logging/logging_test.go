@@ -10,14 +10,14 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/urfave/negroni"
 
-	"github.com/jace-ys/viaduct/pkg/config"
+	"github.com/jace-ys/viaduct/pkg/api"
 	"github.com/jace-ys/viaduct/pkg/utils/log"
 )
 
 func TestLoggingMiddleware(t *testing.T) {
 	var buff bytes.Buffer
 
-	apiRegistry, err := config.RegisterApis("../../../config/config.sample.yaml")
+	apiRegistry, err := api.RegisterAPIs("../../../config/config.sample.yaml")
 	if err != nil {
 		t.Error(err)
 	}
@@ -49,7 +49,7 @@ func TestLoggingMiddleware(t *testing.T) {
 func TestApiContext(t *testing.T) {
 	var buff bytes.Buffer
 
-	apiRegistry, err := config.RegisterApis("../../../config/config.sample.yaml")
+	apiRegistry, err := api.RegisterAPIs("../../../config/config.sample.yaml")
 	if err != nil {
 		t.Error(err)
 	}
@@ -73,7 +73,7 @@ func TestApiContext(t *testing.T) {
 
 	n.ServeHTTP(res, req)
 
-	apiContext := getApiContext(req, &apiRegistry)
+	apiContext := getAPIContext(req, &apiRegistry)
 
 	assert.Equal(t, true, strings.Contains(buff.String(), apiContext.Name))
 	assert.Equal(t, true, strings.Contains(buff.String(), apiContext.Host))

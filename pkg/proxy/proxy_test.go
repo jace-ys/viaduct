@@ -8,7 +8,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	"github.com/jace-ys/viaduct/pkg/config"
+	"github.com/jace-ys/viaduct/pkg/api"
 )
 
 type typicodePost struct {
@@ -19,12 +19,12 @@ type typicodePost struct {
 }
 
 func TestProxy(t *testing.T) {
-	apiRegistry, err := config.RegisterApis("../../config/config.sample.yaml")
+	apiRegistry, err := api.RegisterAPIs("../../config/config.sample.yaml")
 	if err != nil {
 		t.Error(err)
 	}
 
-	testApi := apiRegistry.Apis["typicode"]
+	testApi := apiRegistry.APIs["typicode"]
 	proxy := New(&testApi)
 
 	proxyHandler := StripPrefix(proxy.api.Prefix, proxy)
