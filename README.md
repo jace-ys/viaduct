@@ -1,11 +1,3 @@
-[![Build Status][ci-build]][ci-status]
-[![Docker Pulls][docker-pulls]][docker-image]
-
-[ci-build]:	https://img.shields.io/travis/com/jace-ys/viaduct/master.svg?style=for-the-badge&logo=travis
-[ci-status]: https://travis-ci.com/jace-ys/viaduct
-[docker-pulls]: https://img.shields.io/docker/pulls/jaceys/viaduct.svg?style=for-the-badge&logo=docker
-[docker-image]: https://hub.docker.com/r/jaceys/viaduct
-
 # Viaduct
 
 <img src="https://www.getyourguide.com/magazine/wp-content/uploads/2018/07/Glenfinnan-Viaduct-GetYourGuide.jpg" height="200" align="right"/>
@@ -22,25 +14,25 @@ Viaduct requires no data store and is instead configured using a .yaml file cont
 
 1. Required
 
-   * `name` - a friendly name for the API
-   * `prefix` - the path prefix to be handled
-   * `upstream_url` - the target URL to proxy to
+   - `name` - a friendly name for the API
+   - `prefix` - the path prefix to be handled
+   - `upstream_url` - the target URL to proxy to
 
 2. Optional
 
-   * `methods` - accepted HTTP methods
+   - `methods` - accepted HTTP methods
 
-      Default: ["GET", "POST", "PUT", "PATCH", "DELETE"]
+     Default: ["GET", "POST", "PUT", "PATCH", "DELETE"]
 
-   * `allow_cross_origin` - enable CORS
+   - `allow_cross_origin` - enable CORS
 
-      Default: false
+     Default: false
 
-   * `middlewares` - list of middlewares to be applied for the API
+   - `middlewares` - list of middlewares to be applied for the API
 
-      Default: [] (none)
+     Default: [] (none)
 
-```
+```yaml
 apis:
   typicode:
     name: "JSONPlaceholder"
@@ -97,25 +89,25 @@ A Makefile with some useful targets has been included to aid in the setting up a
 
    1. Port `-p, --port`
 
-      * Description: port to run Viaduct server on
+      - Description: port to run Viaduct server on
 
-      * Default: `80`
+      - Default: `80`
 
-      * Env: `PORT`
+      - Env: `PORT`
 
    2. Config File `-f, --file`
 
-      * Description: path to .yaml configuration file
+      - Description: path to .yaml configuration file
 
-      * Default: `/config/config.yaml`
+      - Default: `/config/config.yaml`
 
-      * Env: `CONFIG_FILE`
+      - Env: `CONFIG_FILE`
 
-      * Recommendations:
+      - Recommendations:
 
-         - Local development: use `config/config.sample.yaml`
+        - Local development: use `config/config.sample.yaml`
 
-         - Docker: keep default
+        - Docker: keep default
 
    3. Help `-h, --help`
 
@@ -158,7 +150,9 @@ docker-compose -f examples/docker-compose/docker-compose.yml up
 ```
 
 ## Contribute
+
 If you are interested in contributing, make a pull request and/or email me at jaceys.tan@gmail.com.
 
 ## License
+
 Viaduct is licensed under the [BSD-3 License](https://github.com/jace-ys/viaduct/tree/master/LICENSE).
